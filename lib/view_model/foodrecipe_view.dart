@@ -4,8 +4,8 @@ import 'package:recipeapp/repository/food_repository.dart';
 class FoodViewModel {
   final _rep = FoodRepository();
 
-  Future<FoodRecipeModel> fetchSimilarRecipesApi() async {
-    final response = await _rep.fetchSimilarRecipesApi();
+  Future<List<FoodRecipeModel>> fetchSimilarRecipesApi() async {
+    final response = await _rep.getFoodApi();
     return response ;
   }
 }

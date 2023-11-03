@@ -38,7 +38,7 @@ dependencies:
   http: ^1.1.0
   flutter_spinkit: ^5.2.0
   cached_network_image: ^3.3.0
-  int:
+ 
 
 dev_dependencies:
   flutter_test:

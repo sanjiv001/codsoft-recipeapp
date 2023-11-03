@@ -18,7 +18,7 @@ class FoodRecipeModel {
       this.fat,
       this.carbs});
 
-  FoodRecipeModel.fromJson(Map<String, dynamic> json) {
+  FoodRecipeModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     title = json['title'];
     image = json['image'];
@@ -29,8 +29,8 @@ class FoodRecipeModel {
     carbs = json['carbs'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+  Map<dynamic, dynamic> toJson() {
+    final Map<dynamic, dynamic> data = new Map<dynamic, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
     data['image'] = this.image;
