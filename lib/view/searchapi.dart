@@ -69,7 +69,7 @@ class SearchScreen extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return const Center(
-      child: Text('Search User'),
+      child: Text('Search Recipe'),
     );
   }
 }

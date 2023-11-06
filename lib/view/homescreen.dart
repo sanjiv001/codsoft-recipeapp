@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:recipeapp/repository/food_repository.dart';
+import 'package:recipeapp/view/detailscreen.dart';
 import 'package:recipeapp/view/searchapi.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -14,9 +15,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  //FoodRepository _fetchpostList = FoodRepository();
- FoodRecipeRepository _foodList = FoodRecipeRepository();
-  
+  FoodRecipeRepository _foodList = FoodRecipeRepository();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +24,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title: const Text("RecipeApp"),
         centerTitle: true,
         actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: SearchScreen());
-              },
-              icon: Icon(Icons.search_sharp),
-            )
-          ],
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchScreen());
+            },
+            icon: Icon(Icons.search_sharp),
+          )
+        ],
       ),
       body: Stack(
         children: [
@@ -42,37 +42,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Column(
               children: [
                 // Note: Same code is applied for the TextFormField as well
-              //   InkWell(
-              //   onTap: Navigator.of(context).pushReplacement(MaterialPage(child: (context)=> SearchScreen)),
-              //    child: const Padding(
-              //       padding:  EdgeInsets.all(8.0),
-              //       child:  TextField(
-              //      //  onChanged: (value) => applyfilter(value),
-              //         decoration: InputDecoration(
-              //           labelText: 'search',
-              //           suffixIcon: Icon(Icons.search_outlined),
-                        
-              //           enabledBorder: OutlineInputBorder(
-              //             borderSide: BorderSide(
-                            
-              //                 width: 2, color: Color.fromARGB(255, 49, 98, 75),), //<-- SEE HERE
-              //           ),
-              //           disabledBorder: OutlineInputBorder(
-              //             borderSide: BorderSide(
-                            
-              //                 width: 2, color: Color.fromARGB(255, 67, 49, 98),), //<-- SEE HERE
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //  ),
-                
+                //   InkWell(
+                //   onTap: Navigator.of(context).pushReplacement(MaterialPage(child: (context)=> SearchScreen)),
+                //    child: const Padding(
+                //       padding:  EdgeInsets.all(8.0),
+                //       child:  TextField(
+                //      //  onChanged: (value) => applyfilter(value),
+                //         decoration: InputDecoration(
+                //           labelText: 'search',
+                //           suffixIcon: Icon(Icons.search_outlined),
+
+                //           enabledBorder: OutlineInputBorder(
+                //             borderSide: BorderSide(
+
+                //                 width: 2, color: Color.fromARGB(255, 49, 98, 75),), //<-- SEE HERE
+                //           ),
+                //           disabledBorder: OutlineInputBorder(
+                //             borderSide: BorderSide(
+
+                //                 width: 2, color: Color.fromARGB(255, 67, 49, 98),), //<-- SEE HERE
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //  ),
+
                 Expanded(
                   child: FutureBuilder(
                       future: _foodList.getfoodList(),
                       builder: (BuildContext context,
                           AsyncSnapshot<dynamic> snapshot) {
-                            var data = snapshot.data;
+                        var data = snapshot.data;
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
@@ -91,13 +91,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       Container(
                                         height: 120,
                                         width: 120,
-                                        child: CachedNetworkImage(
-                                            imageUrl: data[index]
-                                                .image
-                                                .toString()),
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DetailScreen(
+                                                            id: snapshot.data[index].id,
+                                                            title: snapshot.data[index].title.toString(),
+                                                            image: snapshot.data[index].image.toString(),
+                                                            imageType:
+                                                            snapshot.data[index].imageType.toString(),
+                                                            calories: snapshot.data[index].calories,
+                                                            protein: snapshot.data[index].protein.toString(),
+                                                            fat: snapshot.data[index].fat.toString(),
+                                                            carbs: snapshot.data[index].carbs.toString())));
+                                          },
+                                          child: CachedNetworkImage(
+                                              imageUrl:
+                                                  data[index].image.toString()),
+                                        ),
                                       ),
-                                       const SizedBox(width: 20,),
-                                      Text(data[index].title.toString()),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Flexible(
+                                          child: Text(
+                                              data[index].title.toString())),
                                     ],
                                   ),
                                 );

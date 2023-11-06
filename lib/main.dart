@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipeapp/view/homescreen.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
