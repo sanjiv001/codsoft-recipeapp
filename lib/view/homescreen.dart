@@ -17,6 +17,8 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   FoodRecipeRepository _foodList = FoodRecipeRepository();
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,22 +45,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 // Note: Same code is applied for the TextFormField as well
                 //   InkWell(
-                //   onTap: Navigator.of(context).pushReplacement(MaterialPage(child: (context)=> SearchScreen)),
-                //    child: const Padding(
-                //       padding:  EdgeInsets.all(8.0),
-                //       child:  TextField(
+                //   onTap: (){},
+                //    child:  Container(
+                //       padding:  EdgeInsets.fromLTRB(16, 16, 16, 16),
+                //       child:   TextField(
                 //      //  onChanged: (value) => applyfilter(value),
                 //         decoration: InputDecoration(
                 //           labelText: 'search',
+                //           hintText: 'Search',
                 //           suffixIcon: Icon(Icons.search_outlined),
 
-                //           enabledBorder: OutlineInputBorder(
-                //             borderSide: BorderSide(
-
+                //           border: OutlineInputBorder(
+                //             borderRadius: BorderRadius.circular(20),
+                //             borderSide:  const BorderSide(
+                              
                 //                 width: 2, color: Color.fromARGB(255, 49, 98, 75),), //<-- SEE HERE
                 //           ),
-                //           disabledBorder: OutlineInputBorder(
-                //             borderSide: BorderSide(
+                //           disabledBorder:const OutlineInputBorder(
+                //             borderSide:   BorderSide(
 
                 //                 width: 2, color: Color.fromARGB(255, 67, 49, 98),), //<-- SEE HERE
                 //           ),

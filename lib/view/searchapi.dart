@@ -14,7 +14,7 @@ class SearchScreen extends SearchDelegate {
           onPressed: () {
             query = '';
           },
-          icon: const Icon(Icons.close))
+          icon:  Icon(Icons.close))
     ];
   }
 
